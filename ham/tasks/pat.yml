@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: MIT-0
+---
+- name: Get latest release info from GitHub
+  ansible.builtin.uri:
+    url: "https://api.github.com/repos/la5nta/pat/releases"
+    return_content: true
+    status_code: 200
+    body_format: json
+    method: GET
+  register: release_response
+
+- name: Set tag name
+  ansible.builtin.set_fact:
+    tag_name: "{{ release_response.json[0].tag_name }}"
+
+- name: Set deb file name
+  ansible.builtin.set_fact:
+    deb_file_name: "pat_{{ tag_name | replace('v', '') }}_linux_amd64.deb"
+
+- name: Install pat deb
+  become: true
+  ansible.builtin.apt:
+    deb: "https://github.com/la5nta/pat/releases/download/{{ tag_name }}/{{ deb_file_name }}"

@@ -24,3 +24,9 @@
       - libqt6pas6
     state: present
     update_cache: true
+
+- name: Include packages.yml
+  ansible.builtin.include_tasks: packages.yml
+
+- name: Include pat.yml
+  ansible.builtin.include_tasks: pat.yml

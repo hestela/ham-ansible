@@ -1,0 +1,15 @@
+---
+- name: Install ham packages
+  become: true
+  ansible.builtin.apt:
+    name:
+      - wsjtx-data
+      - wsjtx
+      - js8call
+      - fldigi
+      - flrig
+      - flmsg
+      - ax25-tools
+      - ax25-apps
+    state: present
+    update_cache: true
