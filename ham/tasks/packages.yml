@@ -14,5 +14,6 @@
       - gpsd-tools
       - gpsd-clients
       - wwl
+      - yad
     state: present
     update_cache: true
