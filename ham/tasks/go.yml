@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: MIT-0
+---
+- name: Install go from apt
+  become: true
+  ansible.builtin.apt:
+    name:
+      - golang-go
+      - libpulse-dev
+    update_cache: true
+
+- name: Install kappanhang using go install
+  ansible.builtin.command: go install github.com/nonoo/kappanhang@latest
+  args:
+    creates: "{{ ansible_env.HOME }}/go/bin/kappanhang"
+  environment:
+    GOPATH: "{{ ansible_env.HOME }}/go"
+    PATH: "{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/go/bin"

@@ -30,3 +30,6 @@
 
 - name: Include pat.yml
   ansible.builtin.include_tasks: pat.yml
+
+- name: Include go.yml
+  ansible.builtin.include_tasks: go.yml
