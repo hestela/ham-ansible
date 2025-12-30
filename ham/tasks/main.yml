@@ -25,6 +25,12 @@
     state: present
     update_cache: true
 
+- name: Create axports file
+  become: true
+  ansible.builtin.template:
+    src: axports.j2
+    dest: /etc/ax25/axports
+    mode: '0644'
 - name: Include packages.yml
   ansible.builtin.include_tasks: packages.yml
 
