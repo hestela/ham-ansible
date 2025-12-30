@@ -1,0 +1,25 @@
+---
+- name: Install jre
+  become: true
+  ansible.builtin.apt:
+    name:
+      - default-jre
+
+- name: Create YAAC folder
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/YAAC"
+    state: directory
+    mode: '0775'
+
+# Use YAAC.jar to see if we should skip re-download
+- name: Check jar exists
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/YAAC/YAAC.jar"
+  register: yaac_jar
+
+- name: Download YAAC
+  ansible.builtin.unarchive:
+    src: https://www.ka2ddo.org/ka2ddo/YAAC.zip
+    dest: "{{ ansible_env.HOME }}/YAAC"
+    remote_src: true
+  when: not yaac_jar.stat.exists

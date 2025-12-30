@@ -39,3 +39,6 @@
 
 - name: Include go.yml
   ansible.builtin.include_tasks: go.yml
+
+- name: Include yaac.yml
+  ansible.builtin.include_tasks: yaac.yml
