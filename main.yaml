@@ -1,3 +1,5 @@
-- hosts: ham
+---
+- name: Add ham radio role
+  hosts: ham
   roles:
     - ham

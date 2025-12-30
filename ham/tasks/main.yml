@@ -1,9 +1,9 @@
-#SPDX-License-Identifier: MIT-0
+# SPDX-License-Identifier: MIT-0
 ---
 - name: Get latest release info from GitHub
-  uri:
+  ansible.builtin.uri:
     url: "https://api.github.com/repos/andreaspeters/flexpacket/releases/latest"
-    return_content: yes
+    return_content: true
     status_code: 200
     body_format: json
     method: GET
@@ -11,16 +11,16 @@
 
 - name: Download AppImage
   become: true
-  get_url:
+  ansible.builtin.get_url:
     url: "https://github.com/andreaspeters/flexpacket/releases/download/{{ release_response.json.tag_name }}/FlexPacket-x86_64.AppImage"
     dest: "/usr/local/bin/flexpacket"
     mode: 'u+rwx,g+rx,o+rx'
 
 - name: Install sqlite3 and libqt6pas6
   become: true
-  apt:
+  ansible.builtin.apt:
     name:
       - sqlite3
       - libqt6pas6
     state: present
-    update_cache: yes
+    update_cache: true
