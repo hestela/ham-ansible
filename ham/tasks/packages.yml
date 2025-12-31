@@ -9,8 +9,6 @@
       - fldigi
       - flrig
       - flmsg
-      - ax25-tools
-      - ax25-apps
       - gpsd-tools
       - gpsd-clients
       - wwl

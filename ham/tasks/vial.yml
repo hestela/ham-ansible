@@ -8,7 +8,6 @@
     body_format: json
     method: GET
   register: release_response
-  when: ansible_architecture == "x86_64"
 
 - name: Set tag name
   ansible.builtin.set_fact:
@@ -20,4 +19,3 @@
     url: "https://github.com/vial-kb/vial-gui/releases/download/{{ tag_name }}/Vial-{{ tag_name }}-x86_64.AppImage "
     dest: "/usr/local/bin/vial"
     mode: 'u+rwx,g+rx,o+rx'
-  when: ansible_architecture == "x86_64"

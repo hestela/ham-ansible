@@ -1,0 +1,14 @@
+---
+- name: Install ax25
+  become: true
+  ansible.builtin.apt:
+    name:
+      - ax25-tools
+      - ax25-apps
+
+- name: Create axports file
+  become: true
+  ansible.builtin.template:
+    src: axports.j2
+    dest: /etc/ax25/axports
+    mode: '0644'

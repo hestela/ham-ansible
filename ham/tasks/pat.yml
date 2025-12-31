@@ -13,9 +13,15 @@
   ansible.builtin.set_fact:
     tag_name: "{{ release_response.json[0].tag_name }}"
 
-- name: Set deb file name
+- name: Set deb file name x86
   ansible.builtin.set_fact:
     deb_file_name: "pat_{{ tag_name | replace('v', '') }}_linux_amd64.deb"
+  when: ansible_architecture == "x86_64"
+
+- name: Set deb file name aarch64
+  ansible.builtin.set_fact:
+    deb_file_name: "pat_{{ tag_name | replace('v', '') }}_linux_arm64.deb"
+  when: ansible_architecture == "aarch64"
 
 - name: Install pat deb
   become: true
