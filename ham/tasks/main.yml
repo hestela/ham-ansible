@@ -45,3 +45,6 @@
 
 - name: Include yaac.yml
   ansible.builtin.include_tasks: yaac.yml
+
+- name: Include vial.yml
+  ansible.builtin.include_tasks: vial.yml
