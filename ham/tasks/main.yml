@@ -31,3 +31,6 @@
 - name: Include flexpacket.yml
   ansible.builtin.include_tasks: flexpacket.yml
   when: ansible_architecture == "x86_64"
+
+- name: Include sdrpp.yml
+  ansible.builtin.include_tasks: sdrpp.yml

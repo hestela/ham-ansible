@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: MIT-0
+---
+- name: Set arch string
+  ansible.builtin.set_fact:
+    arch_str: "{{ ansible_architecture | replace('x86_64', 'amd64') }}"
+
+- name: Install sdr++ deb
+  become: true
+  ansible.builtin.apt:
+    deb: "https://github.com/AlexandreRouma/SDRPlusPlus/releases/download/nightly/sdrpp_debian_{{ ansible_lsb.codename }}_{{ arch_str }}.deb"
