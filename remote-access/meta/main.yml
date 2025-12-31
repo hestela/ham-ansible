@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: MIT-0
+galaxy_info:
+  author: Henry Estela
+  description: Adds a remote desktop server
+  license: MIT
+
+  min_ansible_version: "2.1"

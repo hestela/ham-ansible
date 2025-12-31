@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: MIT-0
+---
+- name: Get latest release info from GitHub
+  ansible.builtin.uri:
+    url: "https://api.github.com/repos/rustdesk/rustdesk/releases/latest"
+    return_content: true
+    status_code: 200
+    body_format: json
+    method: GET
+  register: release_response
+
+
+- name: Set tag name
+  ansible.builtin.set_fact:
+    tag_name: "{{ release_response.json.tag_name }}"
+
+- name: Install deb
+  become: true
+  ansible.builtin.apt:
+    deb: "https://github.com/rustdesk/rustdesk/releases/download/{{ tag_name }}/rustdesk-{{ tag_name }}-x86_64.deb"

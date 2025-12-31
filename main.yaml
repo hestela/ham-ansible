@@ -3,3 +3,4 @@
   hosts: ham
   roles:
     - ham
+    - remote-access
