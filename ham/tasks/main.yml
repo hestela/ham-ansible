@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: MIT-0
 ---
-- name: Get latest release info from GitHub
+# only a x86_64 build is available
+- name: Get flexpacket latest release info from GitHub
   ansible.builtin.uri:
     url: "https://api.github.com/repos/andreaspeters/flexpacket/releases/latest"
     return_content: true
@@ -8,13 +9,15 @@
     body_format: json
     method: GET
   register: release_response
+  when: ansible_architecture == "x86_64"
 
-- name: Download AppImage
+- name: Install flexpacket AppImage
   become: true
   ansible.builtin.get_url:
     url: "https://github.com/andreaspeters/flexpacket/releases/download/{{ release_response.json.tag_name }}/FlexPacket-x86_64.AppImage"
     dest: "/usr/local/bin/flexpacket"
     mode: 'u+rwx,g+rx,o+rx'
+  when: ansible_architecture == "x86_64"
 
 - name: Install sqlite3 and libqt6pas6
   become: true

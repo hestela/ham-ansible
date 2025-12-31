@@ -17,4 +17,4 @@
 - name: Install deb
   become: true
   ansible.builtin.apt:
-    deb: "https://github.com/rustdesk/rustdesk/releases/download/{{ tag_name }}/rustdesk-{{ tag_name }}-x86_64.deb"
+    deb: "https://github.com/rustdesk/rustdesk/releases/download/{{ tag_name }}/rustdesk-{{ tag_name }}-{{ ansible_architecture }}.deb"
