@@ -1,0 +1,5 @@
+---
+- name: Add role
+  hosts: remote-access
+  roles:
+    - remote-access
