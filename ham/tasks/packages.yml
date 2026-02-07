@@ -13,5 +13,6 @@
       - gpsd-clients
       - wwl
       - yad
+      - bind9-dnsutils
     state: present
     update_cache: true
