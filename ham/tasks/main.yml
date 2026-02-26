@@ -12,10 +12,6 @@
 # - name: Include yaac.yml
 #   ansible.builtin.include_tasks: yaac.yml
 
-- name: Include vial.yml
-  ansible.builtin.include_tasks: vial.yml
-  when: ansible_architecture == "x86_64"
-
 - name: Include ax25.yml
   ansible.builtin.include_tasks: ax25.yml
 

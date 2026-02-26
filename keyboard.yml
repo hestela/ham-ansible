@@ -1,0 +1,5 @@
+---
+- name: Add role
+  hosts: keyboard
+  roles:
+    - keyboard

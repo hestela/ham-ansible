@@ -1,6 +1,7 @@
 ---
 # only a x86_64 build is available
 - name: Get vial latest release info from GitHub
+  when: ansible_architecture == "x86_64"
   ansible.builtin.uri:
     url: "https://api.github.com/repos/vial-kb/vial-gui/releases/latest"
     return_content: true
@@ -10,10 +11,12 @@
   register: release_response
 
 - name: Set tag name
+  when: ansible_architecture == "x86_64"
   ansible.builtin.set_fact:
     tag_name: "{{ release_response.json.tag_name }}"
 
 - name: Install vial AppImage
+  when: ansible_architecture == "x86_64"
   become: true
   ansible.builtin.get_url:
     url: "https://github.com/vial-kb/vial-gui/releases/download/{{ tag_name }}/Vial-{{ tag_name }}-x86_64.AppImage "
