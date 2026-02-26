@@ -1,14 +1,5 @@
 # SPDX-License-Identifier: MIT-0
 ---
-- name: Install sqlite3 and libqt6pas6
-  become: true
-  ansible.builtin.apt:
-    name:
-      - sqlite3
-      - libqt6pas6
-    state: present
-    update_cache: true
-
 - name: Include packages.yml
   ansible.builtin.include_tasks: packages.yml
 
@@ -28,6 +19,7 @@
 - name: Include ax25.yml
   ansible.builtin.include_tasks: ax25.yml
 
+# only a x86_64 build is available
 - name: Include flexpacket.yml
   ansible.builtin.include_tasks: flexpacket.yml
   when: ansible_architecture == "x86_64"
